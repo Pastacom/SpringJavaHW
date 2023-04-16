@@ -1,0 +1,30 @@
+version: "2"
+
+services:
+  spring_rest_api:
+    container_name: spring_api
+    image: javahw-spring:latest
+    depends_on:
+      - postgres_db
+    build:
+      context: .
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres_db:5432/JavaHW
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8080:8080"
+
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:13.3
+    environment:
+      POSTGRES_DB: JavaHW
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/db:/docker-entrypoint-initdb.d
+      - .:/var/lib/postgresql/data
