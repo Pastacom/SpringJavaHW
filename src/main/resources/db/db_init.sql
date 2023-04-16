@@ -4,7 +4,7 @@ CREATE TABLE students_schema.students(
    id SERIAL PRIMARY KEY,
    firstname varchar(50) NOT NULL,
    lastname varchar(50) NOT NULL,
-   patronymic varchar(50),
-   birth_date date NOT NULL,
+   attended boolean NOT NULL,
+   grade int4,
    group_s varchar(50) NOT NULL
 );
