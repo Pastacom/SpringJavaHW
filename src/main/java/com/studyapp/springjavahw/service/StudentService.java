@@ -19,7 +19,7 @@ public class StudentService {
         List<Student> students = studentRepository.findAll();
         List<Student> notAnswered = new ArrayList<>();
         for (Student student : students) {
-            if (student.getGrade() == 0) {
+            if (student.getGrade() == null) {
                 notAnswered.add(student);
             }
         }

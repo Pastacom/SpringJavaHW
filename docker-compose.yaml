@@ -28,3 +28,14 @@ services:
     volumes:
       - ./src/main/resources/db:/docker-entrypoint-initdb.d
       - .:/var/lib/postgresql/data
+  pgAdmin:
+    container_name: admin
+    image: dpage/pgadmin4:6.15
+    environment:
+      PGADMIN_DEFAULT_EMAIL: mailkiborg@mail.ru
+      PGADMIN_DEFAULT_PASSWORD: 2q090104
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
